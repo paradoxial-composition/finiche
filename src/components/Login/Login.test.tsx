@@ -2,6 +2,11 @@ import React from 'react';
 import { render, screen, fireEvent  } from '@testing-library/react';
 import Login from './Login';
 
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useNavigate: () => jest.fn(),
+}));
+
 describe('Login component', () => {
     render(<Login />);
 
