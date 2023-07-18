@@ -9,9 +9,9 @@ const SearchBar = () => {
     }
 
     return (
-        <div className='w-4/5 max-w-lg h-10 flex justify-center'>
+        <div className='w-4/5 h-10 max-w-lg flex justify-center m-auto'>
             <input 
-                className='w-full h-full px-2 pl-3 border border-slate-300 rounded-l-lg bg-black' 
+                className='w-full px-2 pl-3 border border-pink rounded-l-lg bg-black' 
                 placeholder='Recherche ..'
                 onChange={(event) => setSearchValue(event.target.value)}
             />

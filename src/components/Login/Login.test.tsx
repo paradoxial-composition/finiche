@@ -16,7 +16,7 @@ describe('Login component', () => {
     const passwordInput = screen.getByPlaceholderText('Mot de passe');
     const connectButton = screen.getByText('Se connecter');
 
-  test('renders the correct content', () => {
+  it('renders the correct content', () => {
 
     expect(header).toBeInTheDocument();
     expect(subHeader).toBeInTheDocument();
@@ -25,7 +25,7 @@ describe('Login component', () => {
     expect(connectButton).toBeInTheDocument();
   });
 
-  test('has the correct class names and styles', () => {
+  it('has the correct class names and styles', () => {
   
     expect(header).toHaveClass('text-center');
     expect(header).toHaveClass('text-4xl');
@@ -36,7 +36,7 @@ describe('Login component', () => {
     expect(connectButton).toHaveClass('bg-pink');
   });
 
-  test('handles user input correctly', () => {
+  it('handles user input correctly', () => {
     render(<Login />);
 
     fireEvent.change(loginInput, { target: { value: 'testuser' } });
@@ -46,7 +46,7 @@ describe('Login component', () => {
     expect((passwordInput as HTMLInputElement).value).toBe('testpassword');
   });
 
-  test('handles button click', () => {
+  it('handles button click', () => {
     render(<Login />);
     console.log = jest.fn();
     const connectButton = screen.getByText('Se connecter');

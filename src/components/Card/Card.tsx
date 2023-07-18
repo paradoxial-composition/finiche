@@ -30,8 +30,7 @@ const Card : React.FC<CardIn> = ({ movie }) => {
                 aria-label='rating'
             >
                 <BsStarFill 
-                    className='mr-2'
-                    style={{ color: '#E6BC2F' }}
+                    className='mr-2 text-gold'
                     size={16}/>
                 {imdbRating?.toString()}
             </div>
