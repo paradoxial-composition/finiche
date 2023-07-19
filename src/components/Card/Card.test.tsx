@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import { render } from '@testing-library/react';
 import Card from './Card';
 
@@ -23,21 +23,24 @@ const mockMovie = {
   ["id"]: 1231
 };
 
+const setSelectedMovie : Dispatch<SetStateAction<{ id: number; }>> = jest.fn();
+const setShowDetails: Dispatch<SetStateAction<boolean>> = jest.fn();
+
 describe('Card Component', () => {
   it('renders movie title', () => {
-    const { getByText } = render(<Card movie={mockMovie} />);
+    const { getByText } = render(<Card movie={mockMovie} setSelectedMovie={setSelectedMovie} setShowDetails={setShowDetails}/>);
     const titleElement = getByText('Test Movie');
     expect(titleElement).toBeInTheDocument();
   });
 
   it('renders movie genre', () => {
-    const { getByText } = render(<Card movie={mockMovie} />);
+    const { getByText } = render(<Card movie={mockMovie} setSelectedMovie={setSelectedMovie} setShowDetails={setShowDetails}/>);
     const genreElement = getByText('Action');
     expect(genreElement).toBeInTheDocument();
   });
 
   it('renders movie IMDB rating', () => {
-    const { getByText } = render(<Card movie={mockMovie} />);
+    const { getByText } = render(<Card movie={mockMovie} setSelectedMovie={setSelectedMovie} setShowDetails={setShowDetails}/>);
     const imdbRatingElement = getByText('7.5');
     expect(imdbRatingElement).toBeInTheDocument();
   });
