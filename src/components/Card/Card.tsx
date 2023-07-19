@@ -32,6 +32,7 @@ const Card : React.FC<CardIn> = ({ movie, setSelectedMovie, setShowDetails }) =>
               }}
             whileTap={{ scale: 1.5 }}
             onClick={handleClick}
+            data-testid='movie-card'
         >
             <div 
                 className='flex flex-row'

@@ -6,6 +6,7 @@ declare interface userCredentials {
   }
 
 declare interface Movie {
+  [key: string]: string | number | null;
   ["Title"]?: string | null,
   ["US Gross"]?: number | null,
   ["Worldwide Gross"]?: number | null,
