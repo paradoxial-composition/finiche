@@ -26,7 +26,7 @@ const CardDetails = ({ movie, setShowDetails }: CardDetailsIn) => {
             ref={divRef}
             className='w-screen h-screen absolute opacity-90 bg-black'
             onClick={handleDivClick}
-            data-testId='details-container'
+            data-testid='details-container'
         >
             <div className='w-2/3 lg:w-1/2 h-1/2 flex flex-row absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-100 bg-white  rounded-lg'>
                 <ImagePoster />

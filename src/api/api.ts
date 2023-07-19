@@ -15,6 +15,16 @@ export const getAllMovies = () => {
         Authorization: `Bearer ${token}`,
       },
     })
-      .then(res => res)
+      .then((res) => res)
       .catch(error => error);
 };
+
+export const getSearchResult = (searchValue = '', sortBy = '') => {
+    return axios.get(`http://localhost:3000/movies?query=${searchValue}&sortBy=${sortBy}`, {
+      headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((res) => res)
+    .catch(error => error);
+}

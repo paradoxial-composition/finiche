@@ -4,6 +4,10 @@ import "@testing-library/jest-dom/extend-expect";
 import MoviesResult from "./MoviesResult";
 import movies from '../../mocks/movies';
 
+jest.mock('../../api/api', () => ({
+  getAllMovies: jest.fn(() => movies),
+}));
+
 describe("MoviesResult component", () => {
   it("renders the component with movie cards", () => {
     const { getAllByTestId } = render(<MoviesResult />);
