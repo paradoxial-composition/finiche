@@ -2,10 +2,11 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import SearchBar from './SearchBar';
 
-const handleSubmit = jest.fn();
+const setSearchValue = jest.fn();
+
 describe('SearchBar component', () => {
   test('renders the component correctly', () => {
-    render(<SearchBar handleSubmit={handleSubmit} isLoading={false}/>);
+    render(<SearchBar setSearchValue={setSearchValue} isLoading={false}/>);
 
     const inputElement = screen.getByPlaceholderText('Recherche ..');
     const buttonElement = screen.getByRole('button', { name: 'search' });
@@ -15,7 +16,7 @@ describe('SearchBar component', () => {
   });
 
   test('handles user input correctly', () => {
-    render(<SearchBar handleSubmit={handleSubmit} isLoading={false}/>);
+    render(<SearchBar setSearchValue={setSearchValue} isLoading={false}/>);
 
     const inputElement = screen.getByPlaceholderText('Recherche ..');
 

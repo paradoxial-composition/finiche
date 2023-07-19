@@ -2,24 +2,17 @@ import React from 'react';
 import { render, fireEvent, screen, act, waitFor } from '@testing-library/react';
 import SortByButton from './SortByButton';
 
-// jest.mock('../../constants', () => ({
-//   ORDER_BY: {
-//     Title: 'Title',
-//     'Rotten Tomatoes Rating': 'Rotten Tomatoes Rating',
-//     'IMDB Rating': 'IMDB Rating',
-//     'IMDB Votes': 'IMDB Votes',
-//   },
-// }));
+const setSortValue = jest.fn();
 
 describe('SortByButton', () => {
   it('renders the button with the correct icon', () => {
-    render(<SortByButton />);
+    render(<SortByButton setSortValue={setSortValue} isLoading={false}/>);
     const buttonIcon = screen.getByTestId('sort-by-icon');
     expect(buttonIcon).toBeInTheDocument();
   });
 
   it('shows options when the button is clicked', async () => {
-    render(<SortByButton />);
+    render(<SortByButton setSortValue={setSortValue} isLoading={false}/>);
     const button = screen.getByTestId('sort-by-button');
 
     fireEvent.click(button);
@@ -31,7 +24,7 @@ describe('SortByButton', () => {
   });
 
   it('hides options when an option is selected', async () => {
-    render(<SortByButton />);
+    render(<SortByButton setSortValue={setSortValue} isLoading={false}/>);
     const button = screen.getByTestId('sort-by-button');
 
     fireEvent.click(button);

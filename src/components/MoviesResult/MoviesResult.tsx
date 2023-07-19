@@ -14,6 +14,9 @@ const MoviesResult = () => {
     const [selectedMovie, setSelectedMovie] = useState({id: 0});
     const [errorMessage, setErrorMessage] = useState('');
     const [isLoading, setIsLoading] = useState(true);
+    const [searchValue, setSearchValue] = useState('');
+    const [sortValue, setSortValue] = useState('');
+
     const navigate = useNavigate();
     
     useEffect(() => {
@@ -46,21 +49,25 @@ const MoviesResult = () => {
         navigate('/');
     };
 
-    const handleSubmit = async (value: string) => {
-        try {
-            const resp = await getSearchResult(value);
-            if (resp.response) {
-                setErrorMessage(handleErrorMessages(resp.response.status));
-            }
-            if(resp.data) {
-                setMovies(resp.data);
-            }
-        } catch (error) {
-            console.log('Error while getting search result', error)
-        };
+    useEffect(() => {
+        setIsLoading(true);
+        const fetchResult = async () => {
+            try {
+                const resp = await getSearchResult(searchValue, sortValue);
+                if (resp.response) {
+                    setErrorMessage(handleErrorMessages(resp.response.status));
+                }
+                if(resp.data) {
+                    setMovies(resp.data);
+                }
+            } catch (error) {
+                console.log('Error while getting search result', error)
+            };
+        }
 
+        fetchResult();
         setIsLoading(false);
-    }
+    }, [searchValue, sortValue])
 
     const MovieCards = movies.map((movie: Movie) => (
         <Card 
@@ -87,10 +94,10 @@ const MoviesResult = () => {
                     01
                 </div>
                 <div className="grow max-w-lg">
-                    <SearchBar handleSubmit={handleSubmit} isLoading={isLoading}/>
+                    <SearchBar setSearchValue={setSearchValue} isLoading={isLoading}/>
                 </div>
                 <div className="w-14 flex flex-col justify-center">
-                    <SortByButton />
+                    <SortByButton setSortValue={setSortValue} isLoading={isLoading}/>
                 </div>
             </div>
             {errorMessage != '' && (
@@ -98,7 +105,7 @@ const MoviesResult = () => {
                     <span className='margin-auto text-red'>{errorMessage}</span>
                 </div>
             )}
-            <div className='w-full overflow-scroll overflow-x-hidden flex flex-row flex-wrap justify-center p-5 mt-12'>
+            <div className='w-full h-3/4 overflow-scroll overflow-x-hidden flex flex-row flex-wrap justify-center p-5 mt-12'>
                 {MovieCards}
             </div>
             {showDetails && (

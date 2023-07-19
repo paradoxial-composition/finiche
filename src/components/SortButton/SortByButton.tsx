@@ -1,18 +1,22 @@
-import React, { useState } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 import { BsFillFilterSquareFill } from 'react-icons/bs';
 import { ORDER_BY } from '../../constans';
 
-const SortByButton = () => {
+interface SortByIn {
+    setSortValue: Dispatch<SetStateAction<string>>;
+    isLoading: boolean;
+};
+
+const SortByButton = ({ setSortValue, isLoading }: SortByIn) => {
     const [showOptions, setShowOptions] = useState(false);
 
     const handleButtonClick = () => {
         setShowOptions(!showOptions);
     };
-    const handleSelectOption = (option: String) => {
-        console.log(`Selected option: ${option}`);
+
+    const handleSelectOption = (option: string) => {
         setShowOptions(false);
-        // TODO update the panrent state via setSortByValue to then do the async call and get the new movies
-        // and update the MoviesList with the new movie selection
+        setSortValue(option);
     };
 
     const options = Object.keys(ORDER_BY).map( (item: string)  => (
@@ -26,9 +30,10 @@ const SortByButton = () => {
     return (
         <div className='w-30 flex flex-col justify-center relative'>
             <button 
-                className='flex-none'
+                className={'flex-none' + (isLoading ? ' opacity-20' : '')}
                 data-testid='sort-by-button'
                 onClick={handleButtonClick}
+                disabled={isLoading}
             >
                 <BsFillFilterSquareFill 
                     className='m-auto text-pink' size={32}
