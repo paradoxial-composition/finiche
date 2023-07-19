@@ -6,21 +6,21 @@ declare interface userCredentials {
   }
 
 declare interface Movie {
-  ["Title"]?: String | null,
-  ["US Gross"]?: Number | null,
-  ["Worldwide Gross"]?: Number | null,
-  ["US DVD Sales"]?: String | null,
-  ["Production Budget"]?: Number | null,
-  ["Release Date"]?: String | null,
-  ["MPAA Rating"]?: String | null,
-  ["Running Time min"]?: Number | null,
-  ["Distributor"]?: String | null,
-  ["Source"]?: String | null,
-  ["Major Genre"]?: String | null,
-  ["Creative Type"]?: String | null,
-  ["Director"]?: String | null,
-  ["Rotten Tomatoes Rating"]?: Number | null,
-  ["IMDB Rating"]?: Number | null,
-  ["IMDB Votes"]?: Number | null,
-  ["id"]: Number
+  ["Title"]?: string | null,
+  ["US Gross"]?: number | null,
+  ["Worldwide Gross"]?: number | null,
+  ["US DVD Sales"]?: string | null,
+  ["Production Budget"]?: number | null,
+  ["Release Date"]?: string | null,
+  ["MPAA Rating"]?: string | null,
+  ["Running Time min"]?: number | null,
+  ["Distributor"]?: string | null,
+  ["Source"]?: string | null,
+  ["Major Genre"]?: string | null,
+  ["Creative Type"]?: string | null,
+  ["Director"]?: string | null,
+  ["Rotten Tomatoes Rating"]?: number | null,
+  ["IMDB Rating"]?: number | null,
+  ["IMDB Votes"]?: number | null,
+  ["id"]: number
 }
