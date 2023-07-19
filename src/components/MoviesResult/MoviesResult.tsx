@@ -1,16 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SearchBar from '../SearchBar/SearchBar';
 import Card from '../Card/Card';
 import movies from '../../mocks/movies';
 import SortByButton from '../SortButton/SortByButton';
 import CardDetails from '../CardDetails/CardDetails';
 import { Movie } from '../../local';
+import { getAllMovies } from '../../api/api';
+import { getTokenFromSession, removeRokenFromSession } from '../../helpers';
+import { useNavigate } from 'react-router-dom';
 
 const MoviesResult = () => {
     const [showDetails, setShowDetails] = useState(false);
-    const [selectedMovie, setSelectedMovie] = useState({id: 0})
+    const [selectedMovie, setSelectedMovie] = useState({id: 0});
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const token = getTokenFromSession();
+        
+        if(token) {
+            const fetchData =  async () => {
+                 const resp = await getAllMovies();
+                 console.log('resp fom axios !!', resp)
+            };
+     
+            fetchData();
+        } else {
+            navigate('/');
+        }
+
+    }, []);
+
     const handleLogout = () => {
-        console.log('logging out..');
+        removeRokenFromSession();
+        navigate('/');
     };
 
     const MovieCards = movies.map((movie: Movie) => (

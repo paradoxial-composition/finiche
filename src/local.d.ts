@@ -1,7 +1,7 @@
 import { devNull } from "os";
 
 declare interface userCredentials {
-    login: string;
+    username: string;
     password: string;
   }
 
