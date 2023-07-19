@@ -1,13 +1,16 @@
+import { Movie } from "./local";
+import { SESSION_TOKEN, VIWED_MOVIES } from './constans';
+
 export const saveTokenInSession = ( token: string ) => {
-    sessionStorage.setItem('authToken', token);
+    sessionStorage.setItem(SESSION_TOKEN, token);
 };
 
 export const getTokenFromSession = () => {
-   return sessionStorage.getItem('authToken');
+   return sessionStorage.getItem(SESSION_TOKEN);
 };
 
 export const removeRokenFromSession = () => {
-   return sessionStorage.removeItem('authToken');
+   return sessionStorage.removeItem(SESSION_TOKEN);
 };
 
 export const handleErrorMessages = (code: number) => {
@@ -17,3 +20,13 @@ export const handleErrorMessages = (code: number) => {
        default: return '';
    }
 };
+
+export const saveViewedMovieInStorage = (movie: Movie) => {
+   sessionStorage.setItem(VIWED_MOVIES, JSON.stringify(movie));
+};
+
+export const getViewedMoviesFromStorage = () => {
+   return JSON.parse(sessionStorage.getItem(VIWED_MOVIES) || '[]');
+};
+
+export const hasMovie = (movies: Array<Movie>, movie: Movie) => movies.some((item: Movie) => item.id === movie.id);

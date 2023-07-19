@@ -57,7 +57,8 @@ const MoviesResult = () => {
                 if (resp.response) {
                     setErrorMessage(handleErrorMessages(resp.response.status));
                 }
-                if(resp.data) {
+                if(resp.data && 0 <  resp.data.length) {
+                    console.log('data !!!!', resp.data)
                     setMovies(resp.data);
                 }
             } catch (error) {
@@ -90,8 +91,11 @@ const MoviesResult = () => {
                     <span>Quelle est votre choix pour ce soir ?</span>
             </div>
             <div className='w-full flex flex-row justify-center'>
-                <div className="flex-2 w-14">
-                    01
+                <div className="flex w-26">
+                    <button 
+                        className='m-auto text-pink underline'
+                        onClick={() => navigate('/viewHistory')}
+                    >Récemment consultés</button>
                 </div>
                 <div className="grow max-w-lg">
                     <SearchBar setSearchValue={setSearchValue} isLoading={isLoading}/>
