@@ -35,7 +35,9 @@ const ViewHistory = () => {
             <div className='w-full h-3/4 overflow-scroll overflow-x-hidden flex flex-row flex-wrap justify-center md:p-5'>
                 {MovieCards}
                 {showDetails && (
-                    <CardDetails movie={selectedMovie} setShowDetails={setShowDetails}/>
+                    <div className='absolute top-0 left-0'>
+                        <CardDetails movie={selectedMovie} setShowDetails={setShowDetails}/>
+                    </div>
                 )}
             </div>
         </div>

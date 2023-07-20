@@ -36,9 +36,6 @@ const MoviesResult = () => {
                     } else {
                         setMovies(resp);
                     }
-                    // if(resp) {
-                    //     console.log('!!! movies', resp)
-                    // }
                 } catch (error) {
                     console.log('Error while getting movies', error)
                 };
@@ -102,7 +99,7 @@ const MoviesResult = () => {
                 <h1 className='text-4xl uppercase'>Finiche</h1>
                     <span>Quelle est votre choix pour ce soir ?</span>
             </div>
-            <div className='w-full flex flex-row justify-center'>
+            <div className='w-full flex flex-row justify-around'>
                 <div className="flex w-26">
                     <button 
                         className='m-auto text-pink underline'
@@ -118,7 +115,7 @@ const MoviesResult = () => {
             </div>
             {errorMessage != '' && (
                 <div className='w-full flex flex-row justify-center mt-5'> 
-                    <span className='margin-auto text-red'>{errorMessage}</span>
+                    <span className='margin-auto text-red text-center'>{errorMessage}</span>
                 </div>
             )}
             <div className='w-full h-3/4 overflow-scroll overflow-x-hidden flex flex-row flex-wrap justify-center p-5 mt-12'>
