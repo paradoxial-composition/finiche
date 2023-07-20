@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import SearchBar from '../SearchBar/SearchBar';
-import Card from '../Card/Card';
-import SortByButton from '../SortButton/SortByButton';
-import CardDetails from '../CardDetails/CardDetails';
+import SearchBar from '../../components/SearchBar/SearchBar';
+import Card from '../../components/Card/Card';
+import SortByButton from '../../components/SortButton/SortByButton';
+import CardDetails from '../../components/CardDetails/CardDetails';
 import { Movie } from '../../local';
 import { getAllMovies, getSearchResult } from '../../api/api';
-import { getTokenFromSession, removeRokenFromSession, handleErrorMessages } from '../../helpers';
+import { 
+    getTokenFromSession,
+    removeRokenFromSession,
+    handleErrorMessages,
+    clearViewedMoviesInStorage,
+} from '../../helpers';
 import { useNavigate } from 'react-router-dom';
 
 const MoviesResult = () => {
@@ -28,10 +33,12 @@ const MoviesResult = () => {
                     const resp = await getAllMovies();
                     if (resp.response) {
                         setErrorMessage(handleErrorMessages(resp.response.status));
+                    } else {
+                        setMovies(resp);
                     }
-                    if(resp.data) {
-                        setMovies(resp.data);
-                    }
+                    // if(resp) {
+                    //     console.log('!!! movies', resp)
+                    // }
                 } catch (error) {
                     console.log('Error while getting movies', error)
                 };
@@ -46,28 +53,33 @@ const MoviesResult = () => {
 
     const handleLogout = () => {
         removeRokenFromSession();
+        clearViewedMoviesInStorage();
         navigate('/');
     };
 
     useEffect(() => {
-        setIsLoading(true);
-        const fetchResult = async () => {
-            try {
-                const resp = await getSearchResult(searchValue, sortValue);
-                if (resp.response) {
-                    setErrorMessage(handleErrorMessages(resp.response.status));
-                }
-                if(resp.data && 0 <  resp.data.length) {
-                    console.log('data !!!!', resp.data)
-                    setMovies(resp.data);
-                }
-            } catch (error) {
-                console.log('Error while getting search result', error)
-            };
+        if(searchValue || sortValue) {
+            setIsLoading(true);
+            const fetchResult = async () => {
+                try {
+                    const resp = await getSearchResult(searchValue, sortValue);
+                    if (resp.response) {
+                        setErrorMessage(handleErrorMessages(resp.response.status));
+                    } else {
+                        if(0 <  resp.length) {
+                            setMovies(resp);
+                        } else {
+                            setErrorMessage(handleErrorMessages(0));
+                        }
+                    }
+                } catch (error) {
+                    console.log('Error while getting search result', error)
+                };
+            }
+    
+            fetchResult();
+            setIsLoading(false);
         }
-
-        fetchResult();
-        setIsLoading(false);
     }, [searchValue, sortValue])
 
     const MovieCards = movies.map((movie: Movie) => (

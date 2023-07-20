@@ -3,7 +3,7 @@ import PlaceHolderBackground from '../../assets/images/placeholder.jpg';
 import { BsStarFill } from 'react-icons/bs';
 import { Movie } from '../../local';
 import { motion } from 'framer-motion';
-import { getViewedMoviesFromStorage, saveViewedMovieInStorage, hasMovie } from '../../helpers';
+import { getViewedMoviesFromStorage, saveViewedMoviesInStorage, hasMovie } from '../../helpers';
 
 interface CardIn {
     movie: Movie;
@@ -26,7 +26,7 @@ const Card : React.FC<CardIn> = ({ movie, setSelectedMovie, setShowDetails }) =>
         if(!hasMovie(recentlyViewed, movie)) {
             recentlyViewed.push(movie);
         }
-        saveViewedMovieInStorage(recentlyViewed);
+        saveViewedMoviesInStorage(recentlyViewed);
     };
 
     return (

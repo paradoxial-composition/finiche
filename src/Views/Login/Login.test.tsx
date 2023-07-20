@@ -1,10 +1,15 @@
 import React from 'react';
 import { render, screen, fireEvent  } from '@testing-library/react';
 import Login from './Login';
+import * as api from '../../api/api';
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   useNavigate: () => jest.fn(),
+}));
+
+jest.mock('../../api/api', () => ({
+  authenticate: jest.fn(() => {return {token: 'fake Token'}}),
 }));
 
 describe('Login component', () => {
@@ -48,10 +53,10 @@ describe('Login component', () => {
 
   it('handles button click', () => {
     render(<Login />);
-    console.log = jest.fn();
+    const authenticateSpy = jest.spyOn(api, 'authenticate').mockReturnValue(Promise.resolve({token: 'FakeToken'}));
     const connectButton = screen.getByText('Se connecter');
 
     fireEvent.click(connectButton);
-    expect(console.log).toHaveBeenCalledWith('Logging in ..', { login: '', password: '' });
+    expect(authenticateSpy).toHaveBeenCalled();
   });
 });

@@ -1,12 +1,13 @@
 // AppRouter.tsx
-import React from 'react';
+import React, { useMemo } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Login from './components/Login/Login';
-import MoviesResult from './components/MoviesResult/MoviesResult';
-import ViewHistory from './components/ViewHistory/ViewHistory';
+import Login from './Views/Login/Login';
+import MoviesResult from './Views/MoviesResult/MoviesResult';
+import ViewHistory from './Views/ViewHistory/ViewHistory';
+
 
 const AppRouter: React.FC = () => {
-
+  
   return (
     <Router>
         <Routes>

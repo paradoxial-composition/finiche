@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 // import movies from '../../mocks/movies';
-import Card from '../Card/Card';
-import CardDetails from '../CardDetails/CardDetails';
+import Card from '../../components/Card/Card';
+import CardDetails from '../../components/CardDetails/CardDetails';
 import { Movie } from '../../local';
 import { useNavigate } from 'react-router-dom';
 
