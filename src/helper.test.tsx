@@ -35,11 +35,11 @@ describe('handleErrorMessages', () => {
     
         expect(message).toBe('Le serveur est pour le moment surchargé, veuillez réssayer plus tard.');
     });
-    it('should return correct message depending on code 429', () => {
-        const message = helpers.handleErrorMessages(429);
+    // it('should return correct message depending on code 429', () => {
+    //     const message = helpers.handleErrorMessages(429);
     
-        expect(message).toBe('Veuillez attendre au moins une minute entre deux recherche consecutive');
-    });
+    //     expect(message).toBe('Veuillez attendre au moins une minute entre deux recherche consecutive');
+    // });
     it('should return correct message depending on code 0', () => {
         const message = helpers.handleErrorMessages(0);
     

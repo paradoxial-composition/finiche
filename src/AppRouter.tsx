@@ -1,4 +1,3 @@
-// AppRouter.tsx
 import React, { useMemo } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from './Views/Login/Login';

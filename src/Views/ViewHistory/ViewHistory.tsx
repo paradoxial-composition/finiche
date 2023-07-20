@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// import movies from '../../mocks/movies';
 import Card from '../../components/Card/Card';
 import CardDetails from '../../components/CardDetails/CardDetails';
 import { Movie } from '../../local';

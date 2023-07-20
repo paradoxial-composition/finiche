@@ -16,7 +16,7 @@ export const removeRokenFromSession = () => {
 export const handleErrorMessages = (code: number) => {
    switch(code) {
        case 500: return 'Le serveur est pour le moment surchargé, veuillez réssayer plus tard.';
-      //   case 429: return 'Veuillez attendre au moins une minute entre deux recherche consecutive';
+      //   case 429: return 'Veuillez attendre quelque secondes entre deux recherche consecutive';
        case 0: return 'Votre recherche ne retourne aucun resultat.';
        default: return '';
    }

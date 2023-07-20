@@ -24,6 +24,7 @@ const SortByButton = ({ setSortValue, isLoading }: SortByIn) => {
             key={item}
             className='cursor-pointer text-ellipsis overflow-hidden whitespace-nowrap hover:underline hover:text-pink my-1' 
             onClick={() => handleSelectOption(item)}
+            data-testid='sort-by-option'
         >{ORDER_BY[item]}</span>
     ));
     

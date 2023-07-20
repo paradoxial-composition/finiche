@@ -24,11 +24,13 @@ const SearchBar = ({ setSearchValue, isLoading }: SearchBarIn) => {
                 onChange={(event) => setInputValue(event.target.value)}
                 onKeyDown={handleKeyPress}
                 disabled={isLoading}
+                data-testid='search-bar'
             />
             <button 
                 className='w-12 h-full border border-pink flex px-2 pl-3 rounded-r-lg bg-pink'
                 aria-label='search'
                 onClick={() => setSearchValue(inputValue)}
+                data-testid='search-button'
             >
                 <BsSearchHeart className='m-auto' size={24} />
             </button>

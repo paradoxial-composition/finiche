@@ -20,8 +20,8 @@ describe("ImagePoster component", () => {
     const { container } = render(<ImagePoster />);
     const divElement = container.firstChild;
 
-    expect(divElement).toHaveClass("lg:w-2/5");
-    expect(divElement).toHaveClass("lg:h-full");
+    expect(divElement).toHaveClass("w-2/5");
+    expect(divElement).toHaveClass("h-full");
     expect(divElement).toHaveClass("hidden");
     expect(divElement).toHaveClass("lg:inline-flex");
     expect(divElement).toHaveClass("flex-col");
